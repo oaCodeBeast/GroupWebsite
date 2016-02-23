@@ -6,10 +6,11 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha256-oqtj+Pkh1c3dgdH6V9qoS7qwhOy2UZfyVK0qGLa9dCc= sha512-izanB/WZ07hzSPmLkdq82m5xS7EH/qDMgl5aWR37EII+rJOi5c6ouJ3PYnrw6K+DWQcnMZ+nO1NqDr6SBKLBDg==" crossorigin="anonymous">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,33 +18,75 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("Automagical Labs", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
-                    @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
-                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
-                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
-                    }
+                    <li>@Html.ActionLink("Resources", "Index", "Resources")</li>
+                    <li>@Html.ActionLink("Our Team", "Index", "Members")</li>
+                    <li>@Html.ActionLink("Our Team", "Index", "Projects")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
+    </div>
+    <footer class="navbar navbar-default text-muted">
+        <div class="body body-content">
+            <div class="row">
+                <div class="col col-md-4 text-center">
+
+                    Connect With Us<br />
+
+                    <a href="#" class="text-muted" data-toggle="tooltip" title="Connect With Us On Facebook" data-placement="bottom"><i class="fa fa-facebook-square fa-3x"></i></a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="text-muted" data-toggle="tooltip" title="Connect With Us On LinkedIn" data-placement="bottom"><i class="fa fa-linkedin-square fa-3x"></i></a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="text-muted" data-toggle="tooltip" title="Connect With Us On Youtube" data-placement="bottom"><i class="fa fa-youtube-square fa-3x"></i></a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="text-muted" data-toggle="tooltip" title="Connect With Us On github" data-placement="bottom"><i class="fa fa-github-square fa-3x"></i></a><br />
+
+                </div>
+                <div class="col col-md-4 text-center bottom">
+
+                    <a href="#" class="text-muted" data-toggle="tooltip" title="Apply To Join Our Team" data-placement="bottom">Apply to Join</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="text-muted" data-toggle="tooltip" title="Login Portal For Existing Team Members" data-placement="bottom">Login Portal</a>&nbsp;&nbsp;&nbsp;
+                </div>
+                <div class="col col-md-4">
+                    <div>
+                        <h4 class="text-muted"><a href="#" class="text-muted" target="_blank" data-toggle="tooltip" title="Go To Our Blog">Popular Blog Post</a></h4>
+                        <a href="#" class="text-muted">This is example text. Do not take it seriously.</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col col-md-12 text-center"> &copy; @DateTime.Now.Year - Automagical Labs&nbsp;&nbsp;&nbsp; <a href="http://www.centriq.com/career/" target="_blank" class="text-danger" data-toggle="tooltip" title="Leare More About Centriq">Centriq Training Graduates&nbsp;&nbsp;&nbsp;<i class="fa fa-graduation-cap fa-1x"></i></a></div>
+
+                <div class="col col-md-12 text-center">
+                    Founders:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="text-muted" href="http://www.bradtknowles.net" target="_blank" data-toggle="tooltip" title="bradtknowles.net" data-placement="top">Brad T Knowles</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="text-muted" href="http://www.themcdanielcode.com" target="_blank" data-toggle="tooltip" title="TheMcDanielCode.com" data-placement="top">James McDaniel</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="text-muted" href="http://www.jeffbohnenblustcoding.net" target="_blank" data-toggle="tooltip" title="JeffBohnenblustCoding.com" data-placement="top">Jeff Bohnenblust</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="text-muted" href="http://www.livelifehd.net" target="_blank" data-toggle="tooltip" title="LiveLifeHD.net" data-placement="top">Luke Smith</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="text-muted" href="http://www.omarabdulaziz.net" target="_blank" data-toggle="tooltip" title="OmarAbdulaziz.Net" data-placement="top">Omar Abdulaziz</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="text-muted" href="http://www.thecodespider.com" target="_blank" data-toggle="tooltip" title="TheCodeSpider.Com" data-placement="top">Seth Pearson</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+    </script>
 </body>
 </html>
+
