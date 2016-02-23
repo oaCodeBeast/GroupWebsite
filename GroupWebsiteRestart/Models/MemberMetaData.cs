@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.ComponentModel.DataAnnotations;//added
+using GroupWebsiteRestart;
+
+namespace GroupWebsite.Models
+{
+    public class MemberMetaData
+    {
+        public Guid MemberID { get; set; }
+
+        [Required(ErrorMessage = "* Required")]
+        [StringLength(50, ErrorMessage = "* Name must be 50 characters or less.")]
+        public string Name { get; set; }
+     
+        [StringLength(100, ErrorMessage = "* Title must be 100 characters or less.")]
+        public string Title { get; set; }
+
+        [StringLength(100, ErrorMessage = "* Company must be 100 characters or less.")]
+        public string Company { get; set; }
+
+        [StringLength(300, ErrorMessage = "* Photo URL must be 300 characters or less.")]
+        public string Photo { get; set; }
+
+        public string Bio { get; set; }
+
+        public bool IsActive { get; set; }
+        [Required(ErrorMessage = "* Required")]
+        public string Site { get; set; }
+
+        public virtual ICollection<LinkingTableForMPB> LinkingTableForMPBs { get; set; }
+    }
+    [MetadataType(typeof(MemberMetaData))]
+    public partial class Member { }
+
+}
