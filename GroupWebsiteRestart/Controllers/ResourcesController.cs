@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GroupWebsiteRestart;
+using GroupWebsiteRestart.Repository;
 
 namespace GroupWebsiteRestart.Controllers
 {
     public class ResourcesController : Controller
     {
-        private GroupProjectEntities db = new GroupProjectEntities();
+        ResourcesRepository repo = new ResourcesRepository();
 
         // GET: Resources
         public ActionResult Index()
         {
-            return View(db.Resources.ToList());
+            return View(repo.GetAll());
         }
 
         // GET: Resources/Details/5
@@ -27,7 +28,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Resource resource = db.Resources.Find(id);
+            Resource resource = repo.FindByID(id);
             if (resource == null)
             {
                 return HttpNotFound();
@@ -51,8 +52,7 @@ namespace GroupWebsiteRestart.Controllers
             if (ModelState.IsValid)
             {
                 resource.ResourcesID = Guid.NewGuid();
-                db.Resources.Add(resource);
-                db.SaveChanges();
+                repo.Create(resource);
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +66,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Resource resource = db.Resources.Find(id);
+            Resource resource = repo.FindByID(id);
             if (resource == null)
             {
                 return HttpNotFound();
@@ -83,8 +83,7 @@ namespace GroupWebsiteRestart.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(resource).State = EntityState.Modified;
-                db.SaveChanges();
+                repo.Update(resource);
                 return RedirectToAction("Index");
             }
             return View(resource);
@@ -97,7 +96,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Resource resource = db.Resources.Find(id);
+            Resource resource = repo.FindByID(id);
             if (resource == null)
             {
                 return HttpNotFound();
@@ -110,19 +109,10 @@ namespace GroupWebsiteRestart.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Resource resource = db.Resources.Find(id);
-            db.Resources.Remove(resource);
-            db.SaveChanges();
+            Resource resource = repo.FindByID(id);
+            repo.Delete(resource);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

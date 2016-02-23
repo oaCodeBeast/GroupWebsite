@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GroupWebsiteRestart;
+using GroupWebsiteRestart.Repository;
 
 namespace GroupWebsiteRestart.Controllers
 {
     public class BlogPostsController : Controller
     {
-        private GroupProjectEntities db = new GroupProjectEntities();
+        BlogPostRepository repo = new BlogPostRepository();
 
         // GET: BlogPosts
         public ActionResult Index()
         {
-            return View(db.BlogPosts.ToList());
+            return View(repo.GetAll());
         }
 
         // GET: BlogPosts/Details/5
@@ -27,7 +28,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogPost blogPost = db.BlogPosts.Find(id);
+            BlogPost blogPost = repo.FindByID(id);
             if (blogPost == null)
             {
                 return HttpNotFound();
@@ -51,8 +52,7 @@ namespace GroupWebsiteRestart.Controllers
             if (ModelState.IsValid)
             {
                 blogPost.BlogID = Guid.NewGuid();
-                db.BlogPosts.Add(blogPost);
-                db.SaveChanges();
+                repo.Create(blogPost);
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +66,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogPost blogPost = db.BlogPosts.Find(id);
+            BlogPost blogPost = repo.FindByID(id);
             if (blogPost == null)
             {
                 return HttpNotFound();
@@ -83,8 +83,7 @@ namespace GroupWebsiteRestart.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(blogPost).State = EntityState.Modified;
-                db.SaveChanges();
+                repo.Update(blogPost);
                 return RedirectToAction("Index");
             }
             return View(blogPost);
@@ -97,7 +96,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogPost blogPost = db.BlogPosts.Find(id);
+            BlogPost blogPost = repo.FindByID(id);
             if (blogPost == null)
             {
                 return HttpNotFound();
@@ -110,19 +109,11 @@ namespace GroupWebsiteRestart.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            BlogPost blogPost = db.BlogPosts.Find(id);
-            db.BlogPosts.Remove(blogPost);
-            db.SaveChanges();
+            BlogPost blogPost = repo.FindByID(id);
+            repo.Delete(blogPost);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

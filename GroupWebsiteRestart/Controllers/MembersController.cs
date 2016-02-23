@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GroupWebsiteRestart;
+using GroupWebsiteRestart.Repository;
 
 namespace GroupWebsiteRestart.Controllers
 {
     public class MembersController : Controller
     {
-        private GroupProjectEntities db = new GroupProjectEntities();
+        MembersRepository repo = new MembersRepository();
 
         // GET: Members
         public ActionResult Index()
         {
-            return View(db.Members.ToList());
+            return View(repo.GetAll());
         }
 
         // GET: Members/Details/5
@@ -27,7 +28,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
+            Member member = repo.FindByID(id);
             if (member == null)
             {
                 return HttpNotFound();
@@ -51,8 +52,7 @@ namespace GroupWebsiteRestart.Controllers
             if (ModelState.IsValid)
             {
                 member.MemberID = Guid.NewGuid();
-                db.Members.Add(member);
-                db.SaveChanges();
+                repo.Create(member);
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +66,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
+            Member member = repo.FindByID(id);
             if (member == null)
             {
                 return HttpNotFound();
@@ -83,8 +83,7 @@ namespace GroupWebsiteRestart.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(member).State = EntityState.Modified;
-                db.SaveChanges();
+                repo.Update(member);
                 return RedirectToAction("Index");
             }
             return View(member);
@@ -97,7 +96,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
+            Member member = repo.FindByID(id);
             if (member == null)
             {
                 return HttpNotFound();
@@ -110,19 +109,11 @@ namespace GroupWebsiteRestart.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Member member = db.Members.Find(id);
-            db.Members.Remove(member);
-            db.SaveChanges();
+            Member member = repo.FindByID(id);
+            repo.Delete(member);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

@@ -136,3 +136,4 @@ C:\Users\Omar\Documents\GroupWebsite\GroupWebsiteRestart\bin\Microsoft.Owin.Secu
 C:\Users\Omar\Documents\GroupWebsite\GroupWebsiteRestart\obj\Debug\GroupWebsiteRestart.csprojResolveAssemblyReference.cache
 C:\Users\Omar\Documents\GroupWebsite\GroupWebsiteRestart\obj\Debug\GroupWebsiteRestart.dll
 C:\Users\Omar\Documents\GroupWebsite\GroupWebsiteRestart\obj\Debug\GroupWebsiteRestart.pdb
+C:\Users\Student\Documents\GroupWebsite\GroupWebsiteRestart\obj\Debug\GroupWebsiteRestart.csprojResolveAssemblyReference.cache
