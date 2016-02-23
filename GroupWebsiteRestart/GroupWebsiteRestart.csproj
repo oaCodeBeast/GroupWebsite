@@ -209,6 +209,7 @@
       <DependentUpon>GroupWebsite.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Resource.cs">
       <DependentUpon>GroupWebsite.tt</DependentUpon>
     </Compile>
