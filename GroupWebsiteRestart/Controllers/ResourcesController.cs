@@ -36,6 +36,7 @@ namespace GroupWebsiteRestart.Controllers
         }
 
         // GET: Resources/Create
+        [Authorize(Roles = "Admin")]//Added to restrict use to Admin role only
         public ActionResult Create()
         {
             return View();
@@ -46,6 +47,7 @@ namespace GroupWebsiteRestart.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]//Added to restrict use to Admin role only
         public ActionResult Create([Bind(Include = "ResourcesID,Name,URL,IsActive")] Resource resource)
         {
             if (ModelState.IsValid)
@@ -60,6 +62,7 @@ namespace GroupWebsiteRestart.Controllers
         }
 
         // GET: Resources/Edit/5
+        [Authorize(Roles = "Admin")]//Added to restrict use to Admin role only
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -79,6 +82,7 @@ namespace GroupWebsiteRestart.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]//Added to restrict use to Admin role only
         public ActionResult Edit([Bind(Include = "ResourcesID,Name,URL,IsActive")] Resource resource)
         {
             if (ModelState.IsValid)
@@ -91,6 +95,7 @@ namespace GroupWebsiteRestart.Controllers
         }
 
         // GET: Resources/Delete/5
+        [Authorize(Roles = "Admin")]//Added to restrict use to Admin role only
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
