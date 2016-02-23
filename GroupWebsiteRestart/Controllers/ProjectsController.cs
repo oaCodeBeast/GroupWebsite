@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GroupWebsiteRestart;
+using GroupWebsiteRestart.Repository;
 
 namespace GroupWebsiteRestart.Controllers
 {
     public class ProjectsController : Controller
     {
-        private GroupProjectEntities db = new GroupProjectEntities();
+        ProjectsRepository repo = new ProjectsRepository();
 
         // GET: Projects
         public ActionResult Index()
         {
-            return View(db.Projects.ToList());
+            return View(repo.GetAll());
         }
 
         // GET: Projects/Details/5
@@ -27,7 +28,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
+            Project project = repo.FindByID(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -53,8 +54,7 @@ namespace GroupWebsiteRestart.Controllers
             if (ModelState.IsValid)
             {
                 project.ProjectID = Guid.NewGuid();
-                db.Projects.Add(project);
-                db.SaveChanges();
+                repo.Create(project);
                 return RedirectToAction("Index");
             }
 
@@ -69,7 +69,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
+            Project project = repo.FindByID(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -87,8 +87,7 @@ namespace GroupWebsiteRestart.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
-                db.SaveChanges();
+                repo.Update(project);
                 return RedirectToAction("Index");
             }
             return View(project);
@@ -102,7 +101,7 @@ namespace GroupWebsiteRestart.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
+            Project project = repo.FindByID(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -116,19 +115,11 @@ namespace GroupWebsiteRestart.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Project project = db.Projects.Find(id);
-            db.Projects.Remove(project);
-            db.SaveChanges();
+            Project project = repo.FindByID(id);
+            repo.Delete(project);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

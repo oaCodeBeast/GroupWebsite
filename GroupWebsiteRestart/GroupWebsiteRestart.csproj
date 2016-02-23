@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinqKit, Version=1.1.3.1, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqKit.1.1.3.1\lib\net45\LinqKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -217,7 +221,11 @@
       <DependentUpon>GroupWebsite.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BlogPostRepository.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\MembersRepository.cs" />
+    <Compile Include="Repository\ProjectsRepository.cs" />
+    <Compile Include="Repository\ResourcesRepository.cs" />
     <Compile Include="Resource.cs">
       <DependentUpon>GroupWebsite.tt</DependentUpon>
     </Compile>
