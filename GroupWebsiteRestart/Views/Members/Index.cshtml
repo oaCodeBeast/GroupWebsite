@@ -65,8 +65,8 @@
                 @*Added to restrict access to Admin only*@
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
-                    Html.ActionLink("Edit", "Edit", new { id = item.MemberID }) |
-                    Html.ActionLink("Delete", "Delete", new { id = item.MemberID })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MemberID }) 
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MemberID })
                 }
             </td>
         </tr>

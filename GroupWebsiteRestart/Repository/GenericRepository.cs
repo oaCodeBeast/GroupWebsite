@@ -11,7 +11,7 @@ namespace GroupWebsiteRestart.Repository
     public class GenericRepository<TEntity> where TEntity : class
     {
 
-        private GroupProjectEntities db = new GroupProjectEntities();
+        private GroupProjectEntities1 db = new GroupProjectEntities1();
 
 
         public List<TEntity> GetAll()

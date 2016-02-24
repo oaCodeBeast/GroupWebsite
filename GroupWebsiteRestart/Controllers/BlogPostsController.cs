@@ -12,7 +12,7 @@ namespace GroupWebsiteRestart.Controllers
 {
     public class BlogPostsController : Controller
     {
-        private GroupProjectEntities db = new GroupProjectEntities();
+        private GroupProjectEntities1 db = new GroupProjectEntities1();
 
         // GET: BlogPosts
         public ActionResult Index()

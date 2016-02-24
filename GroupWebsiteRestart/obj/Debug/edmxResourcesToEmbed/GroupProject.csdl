@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GroupProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BlogPost">
+    <Key>
+      <PropertyRef Name="BlogID" />
+    </Key>
+    <Property Name="BlogID" Type="Guid" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="HasPicture" Type="Boolean" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="LinkingTableForMPBs" Relationship="Self.FK_LinkingTableForMPB_BlogPosts" FromRole="BlogPosts" ToRole="LinkingTableForMPB" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="MemberID" />
+    </Key>
+    <Property Name="MemberID" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Site" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="LinkingTableForMPBs" Relationship="Self.FK_LinkingTableForMPB_Members" FromRole="Members" ToRole="LinkingTableForMPB" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="ProjectPic" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="DatePublished" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="LinkingTableForMPBs" Relationship="Self.FK_LinkingTableForMPB_Projects" FromRole="Projects" ToRole="LinkingTableForMPB" />
+  </EntityType>
+  <EntityType Name="Resource">
+    <Key>
+      <PropertyRef Name="ResourcesID" />
+    </Key>
+    <Property Name="ResourcesID" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="LinkingTableForMPB">
+    <Key>
+      <PropertyRef Name="MemberID" />
+      <PropertyRef Name="ProjectID" />
+      <PropertyRef Name="BlogID" />
+    </Key>
+    <Property Name="MemberID" Type="Guid" Nullable="false" />
+    <Property Name="ProjectID" Type="Guid" Nullable="false" />
+    <Property Name="BlogID" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="BlogPost" Relationship="Self.FK_LinkingTableForMPB_BlogPosts" FromRole="LinkingTableForMPB" ToRole="BlogPosts" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_LinkingTableForMPB_Members" FromRole="LinkingTableForMPB" ToRole="Members" />
+    <NavigationProperty Name="Project" Relationship="Self.FK_LinkingTableForMPB_Projects" FromRole="LinkingTableForMPB" ToRole="Projects" />
+  </EntityType>
+  <Association Name="FK_LinkingTableForMPB_BlogPosts">
+    <End Role="BlogPosts" Type="Self.BlogPost" Multiplicity="1" />
+    <End Role="LinkingTableForMPB" Type="Self.LinkingTableForMPB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlogPosts">
+        <PropertyRef Name="BlogID" />
+      </Principal>
+      <Dependent Role="LinkingTableForMPB">
+        <PropertyRef Name="BlogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LinkingTableForMPB_Members">
+    <End Role="Members" Type="Self.Member" Multiplicity="1" />
+    <End Role="LinkingTableForMPB" Type="Self.LinkingTableForMPB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="LinkingTableForMPB">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LinkingTableForMPB_Projects">
+    <End Role="Projects" Type="Self.Project" Multiplicity="1" />
+    <End Role="LinkingTableForMPB" Type="Self.LinkingTableForMPB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="LinkingTableForMPB">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GroupProjectEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BlogPosts" EntityType="Self.BlogPost" />
+    <EntitySet Name="Members" EntityType="Self.Member" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="Resources" EntityType="Self.Resource" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="LinkingTableForMPBs" EntityType="Self.LinkingTableForMPB" />
+    <AssociationSet Name="FK_LinkingTableForMPB_BlogPosts" Association="Self.FK_LinkingTableForMPB_BlogPosts">
+      <End Role="BlogPosts" EntitySet="BlogPosts" />
+      <End Role="LinkingTableForMPB" EntitySet="LinkingTableForMPBs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LinkingTableForMPB_Members" Association="Self.FK_LinkingTableForMPB_Members">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="LinkingTableForMPB" EntitySet="LinkingTableForMPBs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LinkingTableForMPB_Projects" Association="Self.FK_LinkingTableForMPB_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="LinkingTableForMPB" EntitySet="LinkingTableForMPBs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

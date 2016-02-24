@@ -13,10 +13,10 @@ namespace GroupWebsiteRestart
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GroupProjectEntities : DbContext
+    public partial class GroupProjectEntities1 : DbContext
     {
-        public GroupProjectEntities()
-            : base("name=GroupProjectEntities")
+        public GroupProjectEntities1()
+            : base("name=GroupProjectEntities1")
         {
         }
     

@@ -246,7 +246,7 @@ warning 6002: The table/view 'GroupProject.dbo.LinkingTableForMPB' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GroupProjectEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GroupProjectEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BlogPosts" EntityType="Self.BlogPost" />
           <EntitySet Name="Members" EntityType="Self.Member" />
           <EntitySet Name="Projects" EntityType="Self.Project" />
@@ -271,7 +271,7 @@ warning 6002: The table/view 'GroupProject.dbo.LinkingTableForMPB' does not have
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GroupProjectModelStoreContainer" CdmEntityContainer="GroupProjectEntities">
+        <EntityContainerMapping StorageEntityContainer="GroupProjectModelStoreContainer" CdmEntityContainer="GroupProjectEntities1">
           <EntitySetMapping Name="BlogPosts">
             <EntityTypeMapping TypeName="GroupProjectModel.BlogPost">
               <MappingFragment StoreEntitySet="BlogPosts">
