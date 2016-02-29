@@ -53,6 +53,7 @@ namespace GroupWebsiteRestart.Controllers
             if (ModelState.IsValid)
             {
                 member.MemberID = Guid.NewGuid();
+                member.IsActive = true;
                 db.Members.Add(member);
                 db.SaveChanges();
                 return RedirectToAction("Index");

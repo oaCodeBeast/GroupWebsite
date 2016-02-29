@@ -1,19 +1,18 @@
-﻿body {
-}
+﻿
 body {
+    width:100%;
 }
 
 .megatron {
-    width: 100%;
+   
     min-height: 100vh;
     background-color: rgba(128, 128, 128,.5);
     color: white;
 }
 
 .minitron {
-    width: 100%;
+
     min-height: 70vh;
-    ;
     color: black;
 }
 
@@ -33,10 +32,9 @@ body {
 
 #welcome {
     background-image: url('class.gif');
-    zoom: 1;
+   
     clear: both;
-    min-width: 100vw;
-    max-height: 100vh;
+
 }
 
 #Team {
@@ -101,4 +99,9 @@ body {
 .Full-Width{
     width:100%;
     background-color:whitesmoke;
+        margin: 62px 0;
+}
+.row {
+    margin-left:0px!important;
+    margin-right:0px!important;
 }

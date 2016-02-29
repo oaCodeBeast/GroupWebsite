@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;//added
 using GroupWebsiteRestart;
 
-namespace GroupWebsite.Models
+namespace GroupWebsiteRestart
 {
     public class MemberMetaData
     {
