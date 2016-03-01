@@ -1,107 +1,239 @@
-﻿
-body {
-    width:100%;
+﻿/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
 }
 
-.megatron {
-   
-    min-height: 100vh;
-    background-color: rgba(128, 128, 128,.5);
-    color: white;
+@media screen {
+
+
+    body {
+        margin: 0;
+        border: none;
+        line-height: 1;
+        font-size: 1.25vw;
+    }
+
+    html {
+        width: unset;
+        margin: 0;
+        border: none;
+        line-height: 1;
+        left: 0;
+        right: 0;
+        position: absolute;
+        box-sizing: border-box;
+        font-size: 18px;
+    }
+
+    ol, ul {
+        list-style: none;
+    }
+
+    blockquote, q {
+        quotes: none;
+    }
+
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+
+    .full-width {
+        border: none;
+        margin: 0 auto;
+        width: 98.9vw;
+        box-sizing: content-box;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .megatron {
+        min-height: 100vh;
+        background-color: rgba(128, 128, 128,.5);
+        color: white;
+    }
+
+    .minitron {
+        min-height: 70vh;
+        color: black;
+    }
+
+    .flexbox {
+        display: flex;
+    }
+
+    .flexitem {
+        margin: auto auto;
+        text-align: center;
+    }
+
+    .banner {
+        font-size: 10vh;
+        height: inherit;
+    }
+
+    #welcome {
+        background-image: url('class.gif');
+        min-height: 100vh;
+        box-sizing: border-box;
+        margin: 0 auto;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #Team {
+    }
+
+    #Quote {
+        background-image: url('Code.JPG');
+        zoom: 1;
+        clear: both;
+        max-height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #HomeContact {
+        background-image: url('Code.JPG');
+        zoom: 1;
+        clear: both;
+        max-height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #Technology {
+    }
+
+    #CallToAction {
+        background-image: url('Code.JPG');
+        zoom: 1;
+        clear: both;
+        max-height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #AboutMVC {
+    }
+
+
+
+
+    .HomeMember {
+        margin: 0 auto;
+        background-color: white;
+        color: black;
+        font-size: 3vh;
+        margin: 1vw auto;
+        box-shadow: 0px 1px 1px 5px black inset;
+        padding-bottom: 2vh;
+    }
+
+    .HomeMemberPicture {
+        margin: .5vw auto;
+        background-image: url('Code.JPG');
+        width: 100%;
+        height: 25vh;
+        overflow: hidden;
+        zoom: normal 1;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #Team > .minitron {
+        padding: 2vh 0;
+        background-color: whitesmoke;
+    }
+
+    h4 {
+        font-size: 1.25vw;
+    }
+
+    body {
+        width: 100%;
+    }
+
+    .row {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
 }
 
-.minitron {
+@media screen and (max-width: 800px) {
 
-    min-height: 70vh;
-    color: black;
-}
+    .HomeMemberPicture {
+        height: 50vh;
+    }
 
-.flexbox {
-    display: flex;
-    height: 25%;
-}
+    .HomeMember {
+        padding-bottom: 2vh;
+        font-size: 10vw;
+    }
 
-.flexitem {
-    margin: auto auto;
-    text-align: center;
-}
+    .banner {
+        font-size: 6vh;
+        padding: 1vh;
+        height: inherit;
+    }
 
-.banner {
-    font-size: 10vh;
-}
+    .full-width {
+        width: 100vw;
+    }
 
-#welcome {
-    background-image: url('class.gif');
-   
-    clear: both;
+    h1 {
+        font-size: 4vh;
+    }
 
-}
+    body {
+        font-size: 4vh;
+    }
 
-#Team {
-}
+    h4 {
+        font-size: 5vh;
+    }
 
-#Quote {
-    background-image: url('Code.JPG');
-    zoom: 1;
-    clear: both;
-    width: 100%;
-    max-height: 100vh;
-}
+    .col-md-4 {
+        margin: 4vh;
+    }
 
-#HomeContact {
-    background-image: url('Code.JPG');
-    zoom: 1;
-    clear: both;
-    width: 100%;
-    max-height: 100vh;
-}
-
-#Technology {
-}
-
-#CallToAction {
-    background-image: url('Code.JPG');
-    zoom: 1;
-    clear: both;
-    width: 100%;
-    max-height: 100vh;
-}
-
-#AboutMVC {
+    .minitron {
+        min-height: 33vh;
+    }
 }
 
 
 
-.HomeMember {
-    height: 20vw;
-    width: 15vw;
-    margin: 0 auto;
-    background-color: white;
-    color: black;
-    font-size: 3vh;
-    margin: 1vw auto;
-    box-shadow: 0px 1px 1px 5px black inset;
-}
-
-.HomeMemberPicture {
-    margin: .5vw auto;
-    background-image: url('Code.JPG');
-    width: 100%;
-    height: 14vw;
-    overflow: hidden;
-    zoom: normal 1;
-}
-
-#Team > .minitron {
-    padding: 2vh 0;
-    background-color: whitesmoke;
-}
-.Full-Width{
-    width:100%;
-    background-color:whitesmoke;
-        margin: 62px 0;
-}
-.row {
-    margin-left:0px!important;
-    margin-right:0px!important;
-}
