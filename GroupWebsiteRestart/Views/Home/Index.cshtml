@@ -1,11 +1,12 @@
-﻿@{
+﻿@model GroupWebsiteRestart.Models.ContactViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div id="welcome">
 
     <div class="megatron flexbox">
-        <div class="flexitem">
+        <div class="flexitem text-center">
             <div class="banner">Automagical Labs</div>
             <h1>EXPAND YOUR WEB PRESENCE AND FUNCTIONALITY<br />AT AN ULTRA-LOW COST</h1>
         </div>
@@ -13,7 +14,7 @@
 </div>
 <section id="Team">
     <div class="minitron">
-        <div class="container">
+        <div class="container text-center">
             <section class="row">
                 <div class="col-md-3">
                     <div class="HomeMember">
@@ -89,7 +90,7 @@
 <div id="Quote">
     <div class="megatron flexbox">
         <div class="flexitem">
-            <div class="container">
+            <div class="container text-center">
                 <h1>“If there’s one thing you learn by working on a lot of different Web sites, it’s that almost any design idea–no matter how appallingly bad–can be made usable in the right circumstances, with enough effort.”  ― Steve Krug, Don’t Make Me Think: A Common Sense Approach to Web Usability</h1>
             </div>
         </div>
@@ -107,7 +108,7 @@
 <div id="CallToAction">
     <div class="megatron flexbox">
         <div class="flexitem">
-            <div class="container">
+            <div class="container text-center">
                 <div class="banner">Have your next website built on Microsoft's latest technology</div>
                 <h1>USE OUR DEVELOPMENT SKILLS TO EMPOWER YOUR USERS AND CLIENTS - WE PROVIDE USERS THE FEATURES THEY WANT AND WHERE THEY EXPECT THEM</h1>
             </div>
@@ -124,11 +125,60 @@
     </div>
 </div>
 <div id="HomeContact">
-    <div class="megatron flexbox">
+    <div class="minitron flexbox">
         <div class="flexitem">
-            <div class="container">
+            <div class="container contactForm">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
+                    <div class="form-horizontal">
+                        <h2 class="text-center">Contact Us For More Information</h2>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control message" } })
+                                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
