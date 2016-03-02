@@ -72,8 +72,7 @@ footer, header, hgroup, menu, nav, section {
 
     .full-width {
         border: none;
-        margin: 0 auto;
-    
+        margin: 64px auto 0 auto;
         box-sizing: content-box;
         overflow: hidden;
         position: relative;
@@ -88,15 +87,16 @@ footer, header, hgroup, menu, nav, section {
     .minitron {
         min-height: 70vh;
         color: black;
+               background-color: rgba(128, 128, 128,.5);
     }
 
     .flexbox {
         display: flex;
     }
-
     .flexitem {
+
         margin: auto auto;
-        text-align: center;
+
     }
 
     .banner {
@@ -233,6 +233,15 @@ footer, header, hgroup, menu, nav, section {
     .minitron {
         min-height: 33vh;
     }
+}
+.contactForm{
+    background-color: whitesmoke;
+    padding: 1vw;
+    width: 100%;
+}
+.message{
+    width: 400px
+    
 }
 
 
